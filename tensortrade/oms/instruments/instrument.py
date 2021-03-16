@@ -146,7 +146,7 @@ USDT = Instrument('USDT', 8, 'Tether')
 USD = Instrument('USD', 2, 'U.S. Dollar')
 EUR = Instrument('EUR', 2, 'Euro')
 JPY = Instrument('JPY', 2, 'Japanese Yen')
-KWN = Instrument('KWN', 2, 'Korean Won')
+KRW = Instrument('KRW', 2, 'Korean Won')
 AUD = Instrument('AUD', 2, 'Australian Dollar')
 
 # Commodities
