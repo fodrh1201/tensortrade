@@ -34,6 +34,9 @@ class TradeSide(Enum):
     def instrument(self, pair: "TradingPair") -> "Instrument":
         return pair.base if self == TradeSide.BUY else pair.quote
 
+    def convert_size(self, ep: "ExchangePair", size: "float") -> float:
+        return size * float(ep.price) if self == TradeSide.SELL else size
+
     def __str__(self):
         return str(self.value)
 

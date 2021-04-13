@@ -59,7 +59,7 @@ class TensorTradeActionScheme(ActionScheme):
 
         Returns
         -------
-        `Clock`
+        # `Clock`
             The environment clock.
         """
         return self._clock
@@ -260,10 +260,11 @@ class SimpleOrders(TensorTradeActionScheme):
         size = min(balance, size)
 
         quantity = (size * instrument).quantize()
+        converted_size = side.convert_size(ep, size)
 
         if size < 10 ** -instrument.precision \
-                or size < self.min_order_pct * portfolio.net_worth \
-                or size < self.min_order_abs:
+                or converted_size < self.min_order_pct * portfolio.net_worth \
+                or converted_size < self.min_order_abs:
             return []
 
         order = Order(
@@ -374,9 +375,11 @@ class ManagedRiskOrders(TensorTradeActionScheme):
         size = min(balance, size)
         quantity = (size * instrument).quantize()
 
+        converted_size = side.convert_size(ep, size)
+
         if size < 10 ** -instrument.precision \
-                or size < self.min_order_pct * portfolio.net_worth \
-                or size < self.min_order_abs:
+                or converted_size < self.min_order_pct * portfolio.net_worth \
+                or converted_size < self.min_order_abs:
             return []
 
         params = {
